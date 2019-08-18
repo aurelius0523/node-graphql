@@ -43,5 +43,5 @@ var server = new apollo_server_express_1.ApolloServer({
 server.applyMiddleware({ app: app });
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
-app.listen({ port: process.env.port || 4000 }, function () { return console.log("\uD83D\uDE80 Server ready at http://localhost:4000" + server.graphqlPath); });
+app.listen({ port: process.env.PORT || 4000 }, function () { return console.log("\uD83D\uDE80 Server ready at http://localhost:" + (process.env.port || 4000) + server.graphqlPath); });
 var templateObject_1;
