@@ -38,7 +38,8 @@ var resolvers = {
 // responsible for fetching the data for those types.
 var server = new apollo_server_express_1.ApolloServer({
     typeDefs: [typeDefs, book_1.BookSchema, genre_1.GenreSchema, author_1.AuthorSchema, repository_1.RepositorySchema, Node_1.NodeSchema, user_1.UserSchema],
-    resolvers: [resolvers, repository_1.repositoryResolvers, user_1.UserResolvers]
+    resolvers: [resolvers, repository_1.repositoryResolvers, user_1.UserResolvers],
+    introspection: true // this is needed so that it works on Heroku
 });
 server.applyMiddleware({ app: app });
 // This `listen` method launches a web-server.  Existing apps
