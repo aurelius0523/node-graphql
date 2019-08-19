@@ -36,7 +36,8 @@ const resolveGetRepositories = async () => {
 };
 
 export const resolveGetRepositoriesForUser = async (source: any, args: any) => {
-    const username = source.username ? source.username : args.username;
+    const username = source && source.username ? source.username : args.username;
+
     try {
         const response = await GithubApi.getUserRepositories(username);
         return response.data.map(mapResponseToSchema);

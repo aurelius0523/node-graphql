@@ -87,7 +87,7 @@ exports.resolveGetRepositoriesForUser = function (source, args) { return __await
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                username = source.username ? source.username : args.username;
+                username = source && source.username ? source.username : args.username;
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
