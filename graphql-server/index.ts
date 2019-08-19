@@ -33,7 +33,8 @@ const resolvers = {
 // responsible for fetching the data for those types.
 const server = new ApolloServer({
     typeDefs: [typeDefs, BookSchema, GenreSchema, AuthorSchema, RepositorySchema, NodeSchema, UserSchema],
-    resolvers: [resolvers, repositoryResolvers, UserResolvers]
+    resolvers: [resolvers, repositoryResolvers, UserResolvers],
+    introspection: true // this is needed so that it works on Heroku
 });
 
 server.applyMiddleware({ app });
