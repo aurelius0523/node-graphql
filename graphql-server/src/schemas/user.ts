@@ -23,7 +23,7 @@ const resolveGetUser = async (source: any, args: any) => {
     try {
         const response = await GithubApi.getUser(args.username);
         const datum = response.data;
-        return { id: datum.id, username: datum.login, url: datum.html_url, imageUrl: datum.avatar_url };
+        return mapResponseToSchema(datum);
     } catch (error) {
         return null;
     }
@@ -33,9 +33,7 @@ const resolveGetUsers = async (source: any, args: any) => {
     try {
         const response = await GithubApi.getUsers(args.since);
 
-        return response.data.map((datum: any) => {
-            return { id: datum.id, username: datum.login, url: datum.html_url, imageUrl: datum.avatar_url };
-        });
+        return response.data.map(mapResponseToSchema);
     } catch (error) {
         return null;
     }
@@ -51,3 +49,8 @@ export const UserResolvers = {
         getUsers: resolveGetUsers
     }
 };
+
+function mapResponseToSchema(datum: any) {
+    return { id: datum.id, username: datum.login, url: datum.html_url, imageUrl: datum.avatar_url };
+}
+// --- Utilities

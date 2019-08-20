@@ -22,6 +22,7 @@ const resolveLanguages = async (source: any) => {
         const response = await GithubApi.getLanguage(source.name);
         return Object.keys(response.data);
     } catch (error) {
+        console.error(error);
         return [];
     }
 };
@@ -31,6 +32,7 @@ const resolveGetRepositories = async () => {
         const response = await GithubApi.getOwnRepositories();
         return response.data.map(mapResponseToSchema);
     } catch (error) {
+        console.error(error);
         return [];
     }
 };
@@ -42,6 +44,7 @@ export const resolveGetRepositoriesForUser = async (source: any, args: any) => {
         const response = await GithubApi.getUserRepositories(username);
         return response.data.map(mapResponseToSchema);
     } catch (error) {
+        console.error(error);
         return [];
     }
 };
