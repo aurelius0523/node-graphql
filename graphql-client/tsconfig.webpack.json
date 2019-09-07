@@ -1,0 +1,12 @@
+/**
+ * By default when setting module to "esnext" in tsconfig.json will cause Typescript webpack to throw errors
+ * because webpack does not compile a Typescript webpack config into javascript file with 'import' syntax that
+ * node does not understand. This file works with ts-paths library to solve this issue. "esnext" module is needed
+ * so that code splitting works correctly.
+ */
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5"
+    }
+}

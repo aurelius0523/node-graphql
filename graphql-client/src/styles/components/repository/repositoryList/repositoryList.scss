@@ -1,0 +1,15 @@
+.repository-list-container {
+    > .repository-card-container {
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
+    }
+
+    > .loading-state-container {
+        > .repository-card-shimmer-container {
+            &:not(:first-child) {
+                margin-top: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.repository-card-container {
+    > .card-container {
+        > .languages-section {
+            margin-top: 20px;
+
+            > .language-label-container {
+                &:not(:first-child) {
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}

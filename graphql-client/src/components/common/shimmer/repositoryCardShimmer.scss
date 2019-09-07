@@ -1,0 +1,20 @@
+.repository-card-shimmer-container {
+    > .card-container {
+        > .title {
+            height: 40px;
+            width: 200px;
+        }
+
+        > .languages-section {
+            margin-top: 20px;
+            > .languages {
+                height: 20px;
+                width: 100px;
+
+                &:not(:first-child) {
+                    margin-left: 8px;
+                }
+            }
+        }
+    }
+}

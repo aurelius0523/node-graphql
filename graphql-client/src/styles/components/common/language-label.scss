@@ -1,0 +1,11 @@
+.language-label-container {
+    display: inline-block;
+    > .wrapper {
+        display: flex;
+        align-items: center;
+
+        > .title {
+            padding-left: 4px;
+        }
+    }
+}

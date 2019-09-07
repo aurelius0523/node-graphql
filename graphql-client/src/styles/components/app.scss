@@ -1,0 +1,68 @@
+.app-container {
+    @import "../shared/global.scss";
+    font-family: "Roboto Light", Arial, Helvetica, sans-serif;
+    background-color: $background-gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    @import "./common/card.scss";
+    @import "./common/drawer.scss";
+    @import "./common/text-input.scss";
+    @import "./common/language-label.scss";
+
+    > .menu-section {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 150px;
+        margin-top: 50px;
+    }
+
+    .route-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        padding-left: calc(25% + 60px);
+        padding-right: 25%;
+        overflow-y: scroll;
+
+        .container {
+            position: relative;
+            height: 100%;
+        }
+
+        .full-page-container {
+            @include full-page;
+        }
+    }
+
+    .shimmer {
+        background: #f6f7f8;
+        background-image: linear-gradient(to right, #f6f7f8ea 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+        background-repeat: no-repeat;
+        background-size: 800px 104px;
+        display: inline-block;
+        position: relative;
+
+        -webkit-animation-duration: 1s;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-name: placeholderShimmer;
+        -webkit-animation-timing-function: linear;
+    }
+
+    @-webkit-keyframes placeholderShimmer {
+        0% {
+            background-position: -468px 0;
+        }
+
+        100% {
+            background-position: 468px 0;
+        }
+    }
+}
