@@ -7,7 +7,7 @@ import * as Dotenv from "dotenv";
 import { repositoryResolvers, RepositorySchema } from "./src/schemas/repository";
 import { NodeSchema } from "./src/schemas/Node";
 import { UserSchema, UserResolvers } from "./src/schemas/user";
-
+import cors from "cors";
 Dotenv.config();
 const express = require("express");
 
@@ -16,6 +16,10 @@ const app = express();
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
     type Query {
+        root: String
+    }
+
+    type Mutation {
         root: String
     }
 `;
@@ -41,4 +45,5 @@ server.applyMiddleware({ app });
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.
+app.use(cors());
 app.listen({ port: process.env.PORT || 4000 }, () => console.log(`🚀 Server ready at http://localhost:${process.env.port || 4000}${server.graphqlPath}`));

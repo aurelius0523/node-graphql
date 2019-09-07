@@ -16,6 +16,10 @@ export const UserSchema = gql`
         getUser(username: String!): User
         getUsers(since: Int): [User]
     }
+
+    extend type Mutation {
+        updateUser(username: String!): User
+    }
 `;
 
 // --- Resolver
@@ -39,6 +43,10 @@ const resolveGetUsers = async (source: any, args: any) => {
     }
 };
 
+const resolveUpdateUser = async (source: any, args: any) => {
+    return await { id: String(Math.random()), username: args.username, url: "", imageUrl: "" };
+};
+
 // --- GraphQL ResolverMap
 export const UserResolvers = {
     User: {
@@ -47,6 +55,9 @@ export const UserResolvers = {
     Query: {
         getUser: resolveGetUser,
         getUsers: resolveGetUsers
+    },
+    Mutation: {
+        updateUser: resolveUpdateUser
     }
 };
 
