@@ -4,6 +4,8 @@ import { repositoryResolvers, RepositorySchema } from "./src/schemas/repository"
 import { NodeSchema } from "./src/schemas/Node";
 import { UserSchema, UserResolvers } from "./src/schemas/user";
 import cors from "cors";
+import { ExpenseSchema, ExpenseResolver } from "./src/schemas/expense";
+import { DateScalar, DateScalarResolver } from "./src/scalars/DateScalar";
 Dotenv.config();
 const express = require("express");
 
@@ -24,8 +26,8 @@ const typeDefs = gql`
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
 const server = new ApolloServer({
-    typeDefs: [typeDefs, RepositorySchema, NodeSchema, UserSchema],
-    resolvers: [ repositoryResolvers, UserResolvers],
+    typeDefs: [typeDefs, RepositorySchema, NodeSchema, UserSchema, ExpenseSchema, DateScalar],
+    resolvers: [repositoryResolvers, UserResolvers, ExpenseResolver, DateScalarResolver],
     introspection: true // this is needed so that it works on Heroku
 });
 

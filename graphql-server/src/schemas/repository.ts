@@ -17,9 +17,9 @@ export const RepositorySchema = gql`
 `;
 
 // --- Resolver
-const resolveLanguages = async (source: any) => {
+const resolveLanguages = async (source: any, args: any) => {
     try {
-        const response = await GithubApi.getLanguage(source.name);
+        const response = await GithubApi.getLanguage(source.fullName);
         return Object.keys(response.data);
     } catch (error) {
         console.error(error);
@@ -65,6 +65,7 @@ const mapResponseToSchema = (datum: any) => {
     return {
         id: datum.id,
         star: datum.watchers_count,
-        name: datum.full_name
+        name: datum.name,
+        fullName: datum.full_name
     };
 };
