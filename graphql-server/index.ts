@@ -1,8 +1,4 @@
 import { ApolloServer, gql } from "apollo-server-express";
-import { resolveBooks } from "./src/resolvers/BookResolver";
-import { AuthorSchema } from "./src/schemas/author";
-import { BookSchema } from "./src/schemas/book";
-import { GenreSchema } from "./src/schemas/genre";
 import * as Dotenv from "dotenv";
 import { repositoryResolvers, RepositorySchema } from "./src/schemas/repository";
 import { NodeSchema } from "./src/schemas/Node";
@@ -24,20 +20,12 @@ const typeDefs = gql`
     }
 `;
 
-// Resolvers define the technique for fetching the types in the
-// schema.  We'll retrieve books from the "books" array above.
-const resolvers = {
-    Query: {
-        books: resolveBooks
-    }
-};
-
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
 const server = new ApolloServer({
-    typeDefs: [typeDefs, BookSchema, GenreSchema, AuthorSchema, RepositorySchema, NodeSchema, UserSchema],
-    resolvers: [resolvers, repositoryResolvers, UserResolvers],
+    typeDefs: [typeDefs, RepositorySchema, NodeSchema, UserSchema],
+    resolvers: [ repositoryResolvers, UserResolvers],
     introspection: true // this is needed so that it works on Heroku
 });
 
