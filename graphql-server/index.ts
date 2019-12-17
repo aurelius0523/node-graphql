@@ -6,6 +6,7 @@ import { UserSchema, UserResolvers } from "./src/schemas/user";
 import cors from "cors";
 import { ExpenseSchema, ExpenseResolver } from "./src/schemas/expense";
 import { DateScalar, DateScalarResolver } from "./src/scalars/DateScalar";
+import { prisma } from "./src/generated/prisma-client";
 Dotenv.config();
 const express = require("express");
 
@@ -37,3 +38,32 @@ server.applyMiddleware({ app });
 // can utilize middleware options, which we'll discuss later.
 app.use(cors());
 app.listen({ port: process.env.PORT || 4000 }, () => console.log(`🚀 Server ready at http://localhost:${process.env.port || 4000}${server.graphqlPath}`));
+
+// A `main` function so that we can use async/await
+async function main() {
+    // Create a new user called `Alice`
+    const newUser = await prisma.createUser({
+        name: "Bob",
+        email: `bob${Math.random()}@prisma.io`,
+        posts: {
+            create: [
+                {
+                    title: "Join us for GraphQL Conf in 2019"
+                },
+                {
+                    title: "Subscribe to GraphQL Weekly for GraphQL news"
+                }
+            ]
+        }
+    });
+    console.log(`Created new user: ${newUser.name} (ID: ${newUser.id})`);
+
+    // Read all users from the database and print them to the console
+    const allUsers = await prisma.users();
+    console.log(allUsers);
+
+    const postsByUser = await prisma.user({ email: "bob@prisma.io" }).posts();
+    console.log(`All posts by that user: ${JSON.stringify(postsByUser)}`);
+}
+
+main().catch((e) => console.error(e));
